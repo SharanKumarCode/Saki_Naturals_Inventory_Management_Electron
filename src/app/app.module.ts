@@ -11,11 +11,23 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProductsComponent } from './products/products.component';
+import { ExpenseComponent } from './expense/expense.component';
+import { SalesComponent } from './sales/sales.component';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductsComponent,
+    ExpenseComponent,
+    SalesComponent,
+    PurchaseComponent,
+    EmployeeComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
