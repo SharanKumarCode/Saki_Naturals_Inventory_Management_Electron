@@ -3,7 +3,7 @@ import {Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { IpcService } from '../ipc.service';
+import { IpcService } from '../services/ipc.service';
 
 @Component({
   selector: 'app-navbar',
@@ -48,11 +48,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onClose(): void {
-    // eleipcRenderer.send('close-main-window')
-    // this.ipcRenderer.send('close-main-window');
-    // api.send('close-main-window')
-    // window.require('electron').ipcRenderer.send('close-main-window')
-    // this._ipc?.send('close-main-window')
     this.ipcService.send('close-main-window')
   }
 
