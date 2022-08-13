@@ -3,6 +3,8 @@ import {Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { IpcService } from '../ipc.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,7 +17,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   path = "assets/img/icon/";
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private domSanitizer:DomSanitizer, private matIconRegistry: MatIconRegistry) {
+
+  constructor(changeDetectorRef: ChangeDetectorRef, 
+              media: MediaMatcher, 
+              private domSanitizer:DomSanitizer, 
+              private matIconRegistry: MatIconRegistry,
+              private ipcService: IpcService) {
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
@@ -28,6 +36,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     .addSvgIcon('sales',this.domSanitizer.bypassSecurityTrustResourceUrl(this.path + 'sales_icon.svg'))
     .addSvgIcon('menu',this.domSanitizer.bypassSecurityTrustResourceUrl(this.path + 'menu_icon.svg'))
     .addSvgIcon('close',this.domSanitizer.bypassSecurityTrustResourceUrl(this.path + 'close_icon.svg'));
+
   }
   
 
@@ -36,6 +45,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+  }
+
+  onClose(): void {
+    // eleipcRenderer.send('close-main-window')
+    // this.ipcRenderer.send('close-main-window');
+    // api.send('close-main-window')
+    // window.require('electron').ipcRenderer.send('close-main-window')
+    // this._ipc?.send('close-main-window')
+    this.ipcService.send('close-main-window')
   }
 
 }

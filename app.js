@@ -2,7 +2,10 @@ const {app, BrowserWindow, ipcMain } = require('electron')
     const url = require("url");
     const path = require("path");
 
+    global.share = {ipcMain}
+
     let mainWindow
+    console.log("creating window..")
 
     function createWindow () {
       mainWindow = new BrowserWindow({
@@ -10,13 +13,14 @@ const {app, BrowserWindow, ipcMain } = require('electron')
         height: 600,
         frame: false,
         webPreferences: {
-          nodeIntegration: true
-        }
+          nodeIntegration: true,
+          preload: path.join(__dirname, `preload.js`)
+        },
       })
 
       mainWindow.loadURL(
         url.format({
-          pathname: path.join(__dirname, `../dist/saki-naturals/index.html`),
+          pathname: path.join(__dirname, `dist/saki-naturals/index.html`),
           protocol: "file:",
           slashes: true
         })
@@ -29,9 +33,9 @@ const {app, BrowserWindow, ipcMain } = require('electron')
       })
     }
 
-    // ipcMain.handle('close-main-window', async (evt) => {
-    //   mainWindow.close();  
-    // });
+    ipcMain.handle('close-main-window', async (evt) => {
+      mainWindow.close();
+    });
 
     app.on('ready', createWindow)
 
