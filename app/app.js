@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain } = require('electron')
     const url = require("url");
     const path = require("path");
 
@@ -16,7 +16,7 @@ const {app, BrowserWindow} = require('electron')
 
       mainWindow.loadURL(
         url.format({
-          pathname: path.join(__dirname, `/dist/electron-app/index.html`),
+          pathname: path.join(__dirname, `../dist/saki-naturals/index.html`),
           protocol: "file:",
           slashes: true
         })
@@ -28,6 +28,10 @@ const {app, BrowserWindow} = require('electron')
         mainWindow = null
       })
     }
+
+    // ipcMain.handle('close-main-window', async (evt) => {
+    //   mainWindow.close();  
+    // });
 
     app.on('ready', createWindow)
 
