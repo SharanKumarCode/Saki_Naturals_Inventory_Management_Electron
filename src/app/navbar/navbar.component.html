@@ -10,17 +10,17 @@
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-          <a mat-list-item><mat-icon svgIcon="products"></mat-icon><span class="nav-link-item">Products</span></a>
-          <a mat-list-item><mat-icon svgIcon="sales"></mat-icon><span class="nav-link-item">Sales</span></a>
-          <a mat-list-item><mat-icon svgIcon="purchase"></mat-icon><span class="nav-link-item">Purchase</span></a>
-          <a mat-list-item><mat-icon svgIcon="expense"></mat-icon><span class="nav-link-item">Expense</span></a>
-          <a mat-list-item><mat-icon svgIcon="employee"></mat-icon><span class="nav-link-item">Employee</span></a>
-          <a mat-list-item><mat-icon>settings</mat-icon><span class="nav-link-item">Settings</span></a>
+          <a routerLink="/products" mat-list-item><mat-icon svgIcon="products"></mat-icon><span class="nav-link-item">Products</span></a>
+          <a routerLink="/sales" mat-list-item><mat-icon svgIcon="sales"></mat-icon><span class="nav-link-item">Sales</span></a>
+          <a routerLink="/purchase" mat-list-item><mat-icon svgIcon="purchase"></mat-icon><span class="nav-link-item">Purchase</span></a>
+          <a routerLink="/expense" mat-list-item><mat-icon svgIcon="expense"></mat-icon><span class="nav-link-item">Expense</span></a>
+          <a routerLink="/employee" mat-list-item><mat-icon svgIcon="employee"></mat-icon><span class="nav-link-item">Employee</span></a>
+          <a routerLink="/settings" mat-list-item><mat-icon>settings</mat-icon><span class="nav-link-item">Settings</span></a>
         </mat-nav-list>
       </mat-sidenav>
   
       <mat-sidenav-content>
-        <p>Random Content</p>
+        <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
